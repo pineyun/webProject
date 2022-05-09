@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#aa {
+		border: 1px solid orange;
+		width: 500px;
+		height: 50px;
+		white-space : nowrap; /*줄바꿈없음*/
+		overflow: hidden;
+		text-overflow: ellipsis;
+		/* overflow: scroll; */
+	}
+	
+	#aa:hover{
+		overflow: visible;
+	}
+</style>
+</head>
+<body>
+	<h1>
+		<span class="spanblue">BLUE</span><span class="spanberry">BERRY</span>
+	</h1>
+	<h1 class="dd">블루베리에 관한 연구</h1>
+	<h2>
+		블루베리와 <span class="antiox">항산화</span> 효능
+	</h2>
+	<p>블루베리는 항산화제인 안토시아닌과 폴리페놀을 다량 포함하고 있습니다.</p>
+	<p id = "aa">매사츄세츠 보스톤에 있는 …… 과일이라고 합니다. 매사츄세츠 보스톤에 있는 …… 과일이라고 합니다. 매사츄세츠 보스톤에 있는 …… 과일이라고 합니다. 매사츄세츠 보스톤에 있는 …… 과일이라고 합니다. 매사츄세츠 보스톤에 있는 …… 과일이라고 합니다. </p>
+	<h2 id="bb">블루베리와 노화</h2>
+	<p>USDA 인류 영양 연구센터…… 사실을 발견하였습니다.</p>
+</body>
+</html>

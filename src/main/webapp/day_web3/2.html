@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+		@font-face{
+		
+			font-family: 'Nanum Gothic', 돋움;
+			src: url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+			font-weight: normal;
+			font-size: normal;
+		}
+		body{
+			color: navy;
+			background-color: beige; /*상속 X, 다른 요소가 투명이기 때문에 상속처럼 보임*/
+			font-family: "Nanum Gothic"; /*font-family 찾아보기*/
+		}
+		
+		
+		p {
+			border: 5px dotted red;  
+		}
+		/*태그 적용 우선 순위 : 인라인>id>클래스>태그*/
+		#bb{
+			background-color: oragne !important; 
+		}
+		
+		#cc{
+			border: 2px solid skyblue !important;
+		}
+		
+		.dd{
+			border: 2px solid orange;
+		}
+		
+		h1{
+			border: 2px solid green;
+			font-weight: 900;
+			text-align: center;
+		}
+		
+		h2{
+			border: 2px solid pink;
+			font-weight: 900;
+		}
+		
+		div.box{
+			border: 1px solid skyblue;
+			width: 80px;
+			padding: 20px;
+		}
+		div.box:hover{
+			background-color: white;
+			transform: rotate(15deg);
+		}
+
+		p{
+			/* font-size: 20px; */
+			font-size : 1.5em;
+			/* color: rgb(200,100,0); */
+			color: #ffaa00;
+			
+			text-indent: 20px;
+			
+			line-height: 1.8em;
+		}
+		
+		.antiox {
+			text-decoration: line-through;
+		}
+		
+		.spanblue {
+			text-transform: capitalize;
+		}
+		
+		.spanberry {
+			text-transform: lowercase;
+		}
+	
+	</style>
+	</head>
+	<body>
+		<h1><span class="spanblue">BLUE</span><span class="spanberry">BERRY</span></h1>
+		<h1 class="dd">블루베리에 관한 연구</h1>
+		<h2>블루베리와 <span class="antiox">항산화</span> 효능</h2>
+		<p id="cc">블루베리는 항산화제인 안토시아닌과 폴리페놀을 다량 포함하고 있습니다.</p>
+		<p>매사츄세츠 보스톤에 있는 …… 과일이라고 합니다. </p>
+		<h2 id="bb">블루베리와 노화</h2>
+		<p>USDA 인류 영양 연구센터…… 사실을 발견하였습니다.</p>	
+		
+		<div class = "box">
+			마우스오버
+			<!-- 마우스오버 -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지</title>
+</head>
+<body>
+	<h1>Image 사용하기</h1>
+	<p>개발자 환경의 경로 : webProject/src/main/webapp가 Root</p>
+	<p>실행환경 : /webProject가 Root</p>
+	<p>절대 경로 이용하기</p>
+	<img alt="Lawrence Alma Tadema의 Ask Me No More" src="http://localhost:9090/webProject/images/Lawrence_Alma-Tadema_-_Ask_Me_No_More.jpg" 
+	width = "300px"/>
+	<p>파일이 이동되어도 수정 없음, '/'로 시작</p>
+	<img alt="Lawrence Alma Tadema의 Ask Me No More" src="/webProject/images/2c760ec94e70b6c18ab6fc3e1a3c26d02aba9187.jpg" 
+	width = "300px"/> 
+	<img alt="daum logo" src="https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png">
+	
+	<figure>
+	<p>상대 경로 이용하기, 현재 위치 기준</p>
+	<img alt="Lawrence Alma Tadema의 Ask Me No More" src="../images/Lawrence_Alma-Tadema_-_Ask_Me_No_More.jpg"
+	width = "300px"/>
+	<figcaption>로렌스 알마 타데마의 그림</figcaption>
+	</figure>
+
+</body>
+</html>

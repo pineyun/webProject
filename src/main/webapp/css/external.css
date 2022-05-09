@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+h1{
+	
+	font-size: 30px;
+	color: navy;
+	background-color: pink;
+}
+
+h2{
+	font-size: 25px;
+	color: white;
+	background-color: green; 
+	
+}

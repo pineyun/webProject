@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<script>
+	function pwcheck(){
+		var pw1 = document.getElementById("userPw").value;
+		var pw2 = document.getElementById("userPwCheck").value;
+		alert("서버에 가기 전에 수행" + pw1 + "---" + pw2);
+		if(pw1!=pw2){
+			alert("비밀번호가 다릅니다. 비밀번호를 확인하세요.");
+			document.getElementById("userPw").focus();
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+	<h1>회원가입</h1>
+	<form action="joinCheck.jsp" onsubmit="return pwcheck();" method="post">
+		<fieldset>
+			<legend>로그인 정보</legend>
+			<ul>
+			<!-- name과 id 모두 필수는 아니지만, 서버에 전달은 name이 담당, 클라이언트에서 접근은 id로 -->
+				<li><label for="userId">아이디 </label><input type="text" id="userId" name="userId" autofocus="autofocus"></li>
+				<li><label for="userPw">비밀번호 </label><input type="password" id="userPw" name="userPw"></li>
+				<li><label for="userPwCheck">비밀번호 확인 </label><input type="password" id="userPwCheck" name="userPwCheck"></li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>개인 정보</legend>
+			<ul>
+				<li><label for="userName">이름</label><input type="text" id="userName" name="userName"></li>
+				<li><label for="userEmail">메일 주소</label><input type="email" id="userEmail" name="userEmail"></li>
+				<li><label for="userTel">연락처</label><input type="tel" id="userTel" name="userTel" pattern="[01]{3}-[1-9]{1}[0-9]{2,3}-[0-9]{4}"></li>
+				<li><label for="userUrl">블로그/홈페이지</label><input type="url" id="userUrl"  name="userUrl"></li>
+			</ul>
+		</fieldset>
+		<input type="submit" value="가입하기">
+	</form>
+</body>
+</html>

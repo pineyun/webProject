@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>input tag의 여러가지 type 살펴보기</h1>
+	<form name="myfrm" action="inputResult.jsp">
+		1. <input name="kosta1" placeholder="아이디를 입력하세요(필수입력)" autofocus="autofocus" required="required"><br>
+		2. <input type="text" name="kosta2" readonly="readonly" value="코스타241" ><br>
+		3. <input type="password" name="kosta3"><br>
+		4. <input type="search" name="kosta4"><br>
+		5. <input type="submit" value="submit" ><br> <!-- 하나의 form 안에 submit은 하나만 있어야 함, form action 주소로 감 -->
+		6. <input type="button" onclick="f();" value = "서버전송"><br>
+		<!-- button은 jsp 작성 필요 -->
+		7. <input type="email" placeholder="aa@gmai.com" name="kosta5"><br>
+		8. <input type="tel" name="kosta6" pattern="[01]{3}-[1-9]{1}[0-9]{2,3}-[0-9]{4}"><br>
+		9. <input type="url" placeholder="http://aa.bb.cc" name="kosta7"><br>
+		10. number 숫자만 입력 : <input type="number" name="kosta8" min="10" max="100" step="10"><br>
+		11. range 범위 : <input type="range" name="kosta9" min="1" max="10" value="3"><br>
+	
+		12. radio : 서로 배타적, 단일선택, name이 같아야 하나의 그룹이 됨
+		<input type="radio" name="subject" value="java">자바
+		<input type="radio" name="subject" value="sql">sql
+		<input type="radio" name="subject" value="html">html
+		<input type="radio" name="subject" value="css" checked>css<br>
+		
+		12. radio : name이 같아야 하나의 그룹이 됨
+		<input type="radio" name="hobby" value="자바공부하기" >자바공부하기
+		<input type="radio" name="hobby" value="걷기">걷기
+		<input type="radio" name="hobby" value="게임">게임
+		<input type="radio" name="hobby" value="농구" checked="checked">농구<br>
+	
+		13. checkbox(서로독립적), 중복선택 가능
+		<input type="checkbox" name="hobby2" value="자바공부하기">자바공부하기
+		<input type="checkbox" name="hobby2" value="걷기">걷기
+		<input type="checkbox" name="hobby2" value="게임" checked>게임
+		<input type="checkbox" name="hobby2" value="농구">농구
+	
+		<select id="hobby3" name="hobby3">
+			<option value="자바공부">자바공부</option>
+			<option>걷기</option>
+			<option>게임</option>
+			<option>농구</option>
+		</select>
+		
+		<br>
+		<hr>
+		<select id="hobby4" name="aa" multiple="multiple">
+			<option>자바공부</option>
+			<option>걷기</option>
+			<option>게임</option>
+			<option>농구</option>
+		</select>
+		<hr>
+		<input type="text" list="hobbylist">
+			<datalist id="hobbylist">
+				<option value="자바공부">자바공부</option>
+				<option value="걷기">걷기</option>
+				<option value="게임">게임</option>
+				<option value="농구">농구</option>
+			</datalist>
+		
+		
+	
+		14. color
+		<input type="color">
+		<hr>
+		
+		15. 시간
+		date <input type="date"><br>
+		month <input type="month"><br>
+		week <input type="week"><br>
+		time<input type="time"><br>
+		datetime-local<input type="datetime-local"><br>
+		<hr>		
+		<input type="submit" value="서버로 전송하기">
+		<input type="reset" value="다시 입력">
+		<input type="image" src="../images/login.jpg">
+		<input type="button" value="button타입">
+		<br>
+		
+	</form>
+	<!-- form안에서는 전송되지만 form 밖에서는  -->
+		<button>버튼 태그 이용1(form이 서버로 전송됨)</button>
+		<button>버튼 태그 이용2(form이 서버로 전송됨)</button>
+	<script>
+		function f(){
+			alert("버튼을 누름");
+			myfrm.action = "anchor.html";
+			myfrm.submit();
+		}
+	</script>
+</body>
+</html>

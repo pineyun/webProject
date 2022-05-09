@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div {
+		border: 3px solid orange;
+		padding: 15px;
+		margin: 15px;
+	}
+	
+	ul{
+		border: 1px solid gray;
+		padding: 10px;
+		list-style: none;
+		background-color : #ffffaa;
+	}
+	ul.inside{
+		list-style: upper-roman;
+		list-style-position: inside;
+		background : url(../images/Lawrence_Alma-Tadema_-_Ask_Me_No_More.jpg) no-repeat;
+		background-size: 50%;
+		background-position: top;
+	}
+	
+	#ul1 {
+		background-color : lightgreen;
+		background-clip : border-box;
+	}
+	
+	li{
+		border: 1px solid orange;
+		margin: 5px;
+		padding: 10px;
+	}
+	
+	li:hover{
+		background-color: #ddffff;
+	}
+	
+	body {
+		background: url("../images/IMG_1861.JPG") no-repeat;
+		background-size: cover;
+		
+	}
+</style>
+</head>
+<body>
+	<div id="ul1">
+		<h3>list-style-position을 지정하지 않음</h3>
+		<ul>
+			<li>회사소개</li>
+			<li>도서</li>
+			<li>자료실</li>
+			<li>질문답변</li>
+			<li>동영상강의</li>
+		</ul>
+	</div>
+	<div>
+		<h3>list-style-position : inside</h3>
+		<ul class=inside>
+			<li>회사소개</li>
+			<li>도서</li>
+			<li>자료실</li>
+			<li>질문답변</li>
+			<li>동영상강의</li>
+		</ul>
+	</div>
+</body>
+</html>
