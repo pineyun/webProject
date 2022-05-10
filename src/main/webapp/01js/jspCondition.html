@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<hr>
+	<h1>3장 조건문</h1>
+	<h1>3장 조건문2</h1>
+	<button id="btn1">동적 element 생성</button>
+	<button id="btn2">제목 수정</button>
+	<button id="btn3">LAB1</button> <!--양수, 0, 음수 구분-->
+	<button id="btn4">LAB2</button> <!-- 짝수, 홀수 구분 -->
+	<button id="btn5">LAB3-if</button> <!-- 국어,영어,수학 입력 후 평균 구한 뒤 수우미양가 구분 -->
+	<button id="btn6">LAB3-switch</button> <!-- 국어,영어,수학 입력 후 평균 구한 뒤 수우미양가 구분 -->
+	<hr>
+	<div id="here">여기</div>
+	
+	<script>//자바스크립트가 html과 섞여있지 않고 독립적으로 존재
+		btn6.onclick = function(){
+		var data = prompt("점수를 입력하세요.(국어,영어,수학)","");
+		var arr = data.split(",");
+		var total = 0;
+		var grade;
+		
+		for(let index in arr){
+			total += Number(arr[index]);
+		}
+		
+		var avg =(total / arr.length);
+		
+		switch (Math.floor(avg/10)) {
+			case 10:
+			case 9: grade = "수"; break;
+			case 8:	grade = "우"; break;
+			case 7: grade = "미"; break;
+			case 6: grade = "양"; break;
+			default: grade = "가"; break;
+		}
+		
+		document.querySelector("#here").innerHTML 
+		= `당신의 총점은 ${total}이고, 평균은 ${avg}이며, 학점은 ${grade}입니다.`;
+	}
+		
+		btn5.onclick = function(){
+			var data = prompt("점수를 입력하세요.(국어,영어,수학)","");
+			var arr = data.split(",");
+			var total = 0;
+			var grade;
+			
+			for(let index in arr){
+				total += Number(arr[index]);
+			}
+			var avg = total / arr.length;
+			
+			if(avg>=90){
+				grade = "수";
+				} else if(avg>=80){
+					grade = "우";
+				} else if(avg>=70){
+					grade = "미"
+				} else if(avg>=60){
+					grade = "양"
+				} else {
+					grade = "가"
+				}
+			
+			document.querySelector("#here").innerHTML 
+			= `당신의 총점은 ${total}이고, 평균은 ${avg}이며, 학점은 ${grade}입니다.`;
+			
+		}
+		
+		btn4.onclick = function(){
+			var data = prompt("숫자를 입력하세요.", "");
+			document.querySelector("#here").innerHTML
+			= data%2 ==0? "짝수" : "홀수";
+			/* var result;
+			if(data%2==0){
+				result="짝수";
+			}else if(data%2==1){
+				result="홀수";
+			}
+			document.querySelector("#here").innerHTML = result; */		
+		}
+	
+	
+		btn3.onclick = function(){
+			var data = prompt("숫자를 입력하세요.", "");
+			var result;
+			if(data>0){
+				result="양수";
+			}else if(data==0){
+				result="0";
+			}else{
+				result="음수";
+			}
+			document.querySelector("#here").innerHTML = result;		
+		}
+		
+		btn2.onclick = function(){
+			document.querySelector("h1:first-of-type").innerHTML
+			= "두번째 버튼을 누름";
+		
+		}
+	
+	
+		//익명함수를 만들어 집어넣기
+		document.getElementById("btn1").onclick = function(){
+			var str = `
+				<ul>
+					<li>HTML5</li>
+					<li>CSS3</li>
+					<li>JavaScript</li>
+					<li>JSP/Servlet</li>
+				</ul>
+			`;
+			document.querySelector("#here").innerHTML = str;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style>
+			div {
+				margin:10px; border: 1px solid red;
+				padding: 20px;
+			}
+		</style>
+		<script type="text/javascript">
+		//호이스팅 : var, function() 가장 먼저 수행
+		
+		alert( "global v1=" +v1 ); //undefined
+		call2();
+		
+		var v1 = 1000;
+		
+		window.onload = function(){
+			//문서 load가 끝나면 함수실행, <body onload="함수명()">과 같음
+			obj = document.querySelector("#here");
+		}
+			function call1(){
+				var a=10;
+				var b="자바스크립트";
+				//here.innerHTML = "a = " + a; //here인 변수가 있을 때 id와 겹칠 수 있으므로 권장X
+				//obj.innerHTML = "a = " + a + "<br> b = " + b;
+				//백틱`` : eclipse 내부브라우저 지원X
+				obj.innerHTML = `a = ${a}<br>b = ${b}`;
+			}
+			
+			function call2(){
+				//호이스팅 : var로 선언된 변수들을 함수의 맨위로 올려 먼저 수행
+				
+				obj.innerHTML = a;
+				//error가 아닌 undefined(선언됐지만 값은 없음)
+				//var로 선언된 변수가 아니라면 not defined(선언되지 않음)
+				var a=100;
+				obj.innerHTML += `a = ${a}<br>`;
+				var a=200;
+				obj.innerHTML += `a = ${a}<br>`;
+			}
+			
+			function call2(){
+				alert("call2 함수추가");
+			}
+			
+			//변수 범위 var없음 > var > let
+			function call3(){
+				var num1=10;//지역변수
+				num2=20;//전역변수
+				//let 예약어 : block 내에서만 유효한 변수 선언
+				//(ES5에서 추가, 내부 브라우저 지원X)
+				for(let num3=1; num3<=10; num3++){//전역변수
+					obj.innerHTML += "<br>num3 = " + num3;
+				}
+				
+				//obj.innerHTML += "<br>loop 이후에 num3 = " + num3;
+				//var num3은 함수 안에서 사용 가능, let는 블록 내에서만->not defined 에러
+			}
+			
+			function call4(){
+				//obj.innerHTML = num2+num3; //31
+			}
+			
+			function call5(){
+				const MAX = 1000;
+				//MAX = 2000; 변경불가
+				obj.innerHTML = MAX;
+				alert("\"MAX\"는 " + MAX + '입니다.');
+			}
+		</script>
+	</head>
+	<body>
+		<h1>JavaScript 변수와 함수 사용</h1>
+		<hr>
+		<button onclick="call1();">변수선언, 백틱사용</button>
+		<button onclick="call2();">호이스팅</button>
+		<button onclick="call3();">의도하지 않은 전역변수</button>
+		<button onclick="call4();">의도하지 않은 전역변수 접근</button>
+		<button onclick="call5();">상수</button>
+		<div id="here">여기</div>
+	</body>
+</html>

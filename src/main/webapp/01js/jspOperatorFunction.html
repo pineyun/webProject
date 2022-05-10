@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>기본문법</h1>
+		<hr>
+		<button onclick="call();">논리연산자</button>
+		<button onclick="call2();">비교연산자</button>
+		<button onclick="call3();">식별자 재선언</button>
+		<button onclick="call4();">(BOM)Windows객체의 모든 정보</button>
+		
+		<input type="text" id="phone" value="">
+		<button onclick="call5();">prompt 함수</button>
+		<button onclick="call6();">confirm 함수</button>
+		<button onclick="call7();">문자와 숫자 혼합</button>
+		<button onclick="call8();">타입 변환 함수</button>
+		<button onclick="call9();">타입 변환 (Boolean)</button>
+		
+		<hr>
+		<div id="here">여기</div>
+		<script>
+			var obj = document.getElementById("here");
+			
+			function call9(){
+				//false
+				obj.innerHTML += "<br>" + Boolean(0);
+				obj.innerHTML += "<br>" + Boolean("");
+				obj.innerHTML += "<br>" + Boolean(NaN);
+				obj.innerHTML += "<br>" + Boolean(null);
+				obj.innerHTML += "<br>" + Boolean(undefined);
+				//true
+				obj.innerHTML += "<br>" + Boolean(10);
+				obj.innerHTML += "<br>" + Boolean("aa") +"<br>";
+				//자동형변환
+				obj.innerHTML += 0 == false;
+				obj.innerHTML += 0 == "";
+				obj.innerHTML += 1 == true;
+				//'===' 값과 타입을 함께 비교
+				obj.innerHTML += 10 === "10";
+				
+			
+			}
+			
+			function call8(){
+				var a = '500달러';
+				var b = 1000;
+				//Nan(Not a number) 계산불가
+				//obj.innerHTML = Number(a)+b;
+				obj.innerHTML = parseInt(a)+b; //a의 숫자만 변환
+				obj.innerHTML += parseInt(a)*b;
+			}
+			
+			function call7(){
+				//+는 문자가 우선순위가 높다.
+				obj.innerHTML = 100+'200'; //문자
+				obj.innerHTML += '100'+'200'; //문자
+				obj.innerHTML += '<br>';
+				//*는 숫자가 우선순위가 높다.
+				obj.innerHTML += '100' * '200'; //숫자
+				obj.innerHTML += 100 * '200'; //숫자
+				obj.innerHTML += '100 * 200'; //문자
+			}
+			
+			function call6(){
+				var result = confirm("수락하시겠습니까?");
+				//삼항연산자
+				obj.innerHTML += result? "감사합니다." : "다음 기회에 뵙겠습니다.";
+				
+				//조건문
+				/* if(result){
+					obj.innerHTML="감사합니다.";
+				} else{
+					obj.innerHTML="다음 기회에 뵙겠습니다.";
+				} */
+			}
+			
+			function call5(){
+				var phoneObj = document.getElementById("phone");
+				var myPhone = phoneObj.value;
+				if(myPhone==""){
+					//alert("전화번호를 입력하세요.");
+					var inputData = prompt("전화번호를 입력하세요.", "010");
+					phoneObj.value = inputData;
+					phoneObj.focus();
+				} 
+			}
+			
+			function call4(){
+				
+				for(var property in window){					//객체[속성]
+					obj.innerHTML += "<br>"+property + "==> " + window[property]; 
+				}
+			}
+			
+			function call3(){
+				
+				var aa = "식별자재선언";	
+				alert(alert);
+			}
+			
+			function call2(){
+				//obj.innerHTML = 30>20>10;
+				obj.innerHTML = 30>20 && 20>10;
+			}
+			
+			function call(){
+				//&&는 앞의 결과가 f면 뒷부분 수행 X (자바와 동일, boolean)
+				//&는 앞의 결과와 무관하게 뒷부분 모두 수행 (결과가 number)
+				var a=10;
+				obj.innerHTML = a>20 && ++a>30;
+				obj.innerHTML += "<br>a = " + a;
+			}
+			
+			
+		</script>
+	</body>
+</html>

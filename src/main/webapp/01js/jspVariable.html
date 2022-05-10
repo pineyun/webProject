@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP 변수</title>
+	<script>
+	//JavaScript 변수
+	var a=10; //var 붙이면 지역변수 but 함수 내의 변수가 아니므로 전역변수
+	b=20; //var 없으면 전역변수
+	function call1(){
+		var c=30; //지역변수
+ 		d=40; //전역변수
+ 		alert(a+b+c+d);
+	}
+	function call2(){
+		
+		alert(a+b+d);
+		//c는 지역변수로 접근불가, not defined(선언된 변수가 없음) 
+		//d는 call1()을 먼저 불러와야 사용가능
+		//변수를 중복하여 사용할 수도 있기 때문에 지역변수로 사용하는 것이 좋음 
+		d = "자바스크립트"; //jsp는 변수의 타입을 쓰지 않음
+	}
+	function call3(){
+		alert(d);
+	}
+	function call4(){
+		//JavaScript의 타입은 6가지
+		//number, string, boolean, object, function, undefined
+		
+		var v1; //선언되었지만 값 할당X -> undefined 타입
+		document.getElementById("here").innerHTML
+			+= "<p>"+ v1 + "-->" + typeof(v1) + "</p>";
+		
+		v1 = 10;
+		document.getElementById("here").innerHTML
+			+= "<p>"+ v1 + "-->" + typeof(v1) + "</p>";
+		
+		v1 = 3.14;
+		document.getElementById("here").innerHTML
+		+= "<p>"+ v1 + "-->" + typeof(v1) + "</p>";
+		
+		v1 = "자바스크립트";
+		document.getElementById("here").innerHTML
+		+= "<p>"+ v1 + "-->" + typeof(v1) + "</p>";
+		
+		v1 = [1,2,3,4,5]; //배열, object type
+		document.getElementById("here").innerHTML
+		+= "<p>"+ v1 + "-->" + typeof(v1) + "</p>";
+		
+		v1 = {name: 'jj', "phone":"010-1234-5678"}; //객체, name(속성)과 phone(값)을 합쳐놓은 것
+		document.getElementById("here").innerHTML
+		+= "<p>"+ v1["name"] + v1.name + "(" +v1.phone + ") -->" + typeof(v1) + "</p>";
+	
+		v1 = function(){a=10;}; //함수 type
+		document.getElementById("here").innerHTML
+		+= "<p>"+ v1 + "-->" + typeof(v1) + "</p>";
+		
+		v1 = 10>20; //boolean type
+		document.getElementById("here").innerHTML
+		+= "<p>"+ v1 + "-->" + typeof(v1) + "</p>";
+		
+
+		document.getElementsByClassName("there")[0].innerHTML
+		+= "<h2>class 이름으로 접근하기</h2>"; 
+		
+		document.getElementsByName("callname")[0].innerHTML
+		+= "<h2>name으로 접근하기</h2>";
+		
+		//ECMAScript6에서 추가
+		document.querySelector("#here").innerHTML
+		+= "<h1>ECMAScript6</h1> <h2>querySelector #id로 접근하기</h2>"; 
+		
+		document.querySelector(".there").innerHTML
+		+= "<h2>querySelector .class로 접근하기</h2>"; 
+		
+		document.querySelector("div[name='callname']").innerHTML
+		+= "<h2>querySelector 속성으로 접근하기</h2>"; 
+		
+		
+	}
+	</script>
+</head>
+<body>
+	<h1>JavaScript 변수</h1>
+	<hr>
+	<button onclick="call1();">버튼1</button>
+	<button onclick="call2();">버튼2</button>
+	<button onclick="call3();">버튼3</button>
+	<button onclick="call4();">버튼4</button>
+	
+	<hr>
+	<div id="here" class="there" name ="callname">여기</div>
+</body>
+</html>
