@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수연습</title>
+<script>
+	function call(){
+		here.innerHTML = `Callback 함수 1`;
+		call2(function(){return 100;});
+		call2(function(){return `자바스크립트`;});
+		call2(call3);//call3() 은 호출한 것 call2(30)이 되어 에러
+	};
+	
+	function call2(f){
+		//callback함수 : 매개변수로 함수가 전달되고 전달받은 쪽에서 실행
+		here.innerHTML += `<br> f ==> ${f}`;
+	};
+	
+	function call3(){
+		var a=10;
+		var b=20;
+		return a+b;
+	};
+	
+	//선언적함수
+	function test(){
+		setInterval(timeDisplay, 1000);
+		
+		function timeDisplay(){
+			here.innerHTML = new Date();
+		};
+	};
+	
+	
+	function test2(){ 
+		//콜백함수  	//익명함수
+		setInterval(function (){
+			here.innerHTML = new Date();
+		}, 1000);
+		
+		
+	};
+	
+	function example(){
+		var result = test3();
+		here.innerHTML = result;
+		result();
+	};
+	
+	function test3(){
+		var a=10;
+		return function(){
+			here.innerHTML += `<br> ${++a}`;
+		};
+	};
+	
+	
+	
+	
+	
+	
+	
+	function test4(parameter){
+		var output = `Hello ${parameter}`;
+		return function(){
+			return output;
+		};
+	};
+	
+	function example2(){
+		var f1 = test4("자바");
+		var f2 = test4("CSS");
+		var result1 = f1();
+		var result2 = f2();
+		here.innerHTML = `${result1} ***** ${result2}`;
+	};
+	
+	
+	
+	
+	
+	
+	function test5(parameter){
+		var su = parameter;
+		return function(){
+			su++;
+			return su;
+		};
+	};
+	var num_func1 = test5(0); //각자 다른 su가 존재
+	var num_func2 = test5(100); //각자 다른 su가 존재
+	function example3(){
+		here.innerHTML = num_func1();
+	};
+	function example4(){
+		here.innerHTML = num_func2();
+	};
+	
+	
+	
+	
+	
+	
+	//익명함수
+	/*var add = (function(){
+		var num = 0;
+		return function(){
+			num++;
+			return num;	};
+		}
+	)();*/
+	
+	//선언적함수
+	function increment(){
+		var num = 0;
+		return function(){
+				num++;
+				return num;
+			}; 
+	};
+	var add = increment();
+	function example5(){
+		here.innerHTML = add();
+	};
+	
+	
+	
+	
+	
+</script>
+</head>
+<body>
+	<h1>함수연습 콜백, 클로저 중요~!</h1>
+	<ol>
+		<!-- a 태그에 링크가 아닌 자바스크립트 연결 가능 -->
+		<li><a href="javascript:call();">Callback 함수 1</a></li>
+		<li><a href="jspFunction.html">링크연결</a></li>
+		<li><a href="javascript:test()">Callback 함수 3</a></li>
+		<li><a href="javascript:example()">함수를 리턴하는 함수 , 클로저(지역변수 사용 위배)</a></li>
+		<li><a href="javascript:example2()">클로저2</a></li>
+		<li><button onclick="example3();">0부터 1씩 증가</button></li>
+		<li><button onclick="example4();">100부터 1씩 증가</button></li>
+		<li><button onclick="example5();">counter</button>
+	</ol>
+	<hr>
+	<div id="here">여기에 출력</div>
+</body>
+</html>

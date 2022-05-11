@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>5장 내장함수</title>
+<script>
+	var bgarr = ["yellow", "lightgreen", "lightpink", "lightblue", "orange"];
+	window.onload = function(){
+		here.innerHTML = "자바스크립트 내장함수 연습하기";
+		
+		btn1.onclick = call1;
+		btn2.onclick = call2;
+		btn3.onclick = call3;
+		btn4.onclick = call4;
+		btn5.onclick = call5;
+		btn6.onclick = call6;
+		btn7.onclick = call7;
+		btn8.onclick = call8;
+	};
+	
+	//배경색바꾸기
+	window.onmouseover = function(){
+		clearInterval(bgInterval);
+	};
+	function call1(){
+		//화살표함수(자바에서 람다식)
+		bgInterval = setInterval(() => {
+			var num = Math.floor(Math.random()*bgarr.length);
+			document.bgColor = arr[num];
+		}, 1500);
+	};
+	
+	
+	//encode
+	function call2(){
+		var uri = "http://localhost:9090/webProject/02js/jsp내장함수.html";
+		var result = encodeURIComponent(uri);
+		here.innerHTML = result;
+		here.innerHTML += "<br>" + decodeURIComponent(result); 
+	};
+	
+	//eval() 함수
+	function call3(){
+		var str = "var a=10; <br> var b=20; <br> alert(a+b);";
+		here.innerHTML = str;
+		eval(str);
+	};
+	
+	//계산기
+	function call4(){
+		var a = document.querySelector("#num1").value;
+		var op = document.querySelector("#op").value;
+		var b = document.querySelector("#num2").value;
+		var result = a + op + b;
+		document.querySelector("#result").value = eval(result);
+		
+		
+	};
+	
+	function call5(){
+		var a = NaN;
+		var b = Number("100달러");
+		here.innerHTML = isNaN(a) == isNaN(b);
+		here.innerHTML += "<br>" + b;
+	};
+	
+	
+	
+	
+	//기본매개변수
+	function call6(){
+		//test(10,20,30);
+		test(10);
+	};
+	
+	//매개변수에 값이 전달되지 않은 경우 Undefined인데,
+	//이에 대한 초기값을 할당하는 방법
+	//방법1
+	function test(a,b,c){
+		//alert(!Boolean(b));
+		if(!b) b=200;
+		if(!c) c=300;
+		
+		here.innerHTML = a+b+c;
+	};
+	//방법2
+	function test(a,b,c){
+		b = b || 1000;
+		c = c || 2000;
+		
+		here.innerHTML = a+b+c;
+	};
+	//방법3 : ECMA6에서 추가됨
+	function test(a,b=1,c=2){
+		here.innerHTML = a+b+c;
+	};
+	
+	
+	
+	//익명함수와 화살표함수
+	function call7(){
+		//1.익명함수
+		var f1 = function(a,b){return a+b;};
+		//2. 화살표함수 - 익명함수의 표현을 단순화
+		var f2 = (a,b)=>a+b;
+		
+		here.innerHTML = f1(1,2) + f2(100,200);
+	};
+	
+	//전개연산자
+	function call8(){
+		call9(1,2,3);
+		var arr = [100,200,300];
+		call10(...arr);
+	};
+	
+	function call9(...nums){
+		//here.innerHTML = arguments[0]+ arguments[1]+ arguments[2];
+		here.innerHTML = nums[0]+ nums[1]+ nums[2] + "<br>";
+	};
+	
+	function call10(...nums){
+		here.innerHTML += nums[0]+ nums[1]+ nums[2];
+	};
+</script>
+</head>
+<body>
+	<h1>자바스크립트 내장함수</h1>
+	<button id="btn1">배경색 바꾸기</button>
+	<button id="btn2">encode</button>
+	<button id="btn3">eval() 함수</button>
+	<button id="btn4">계산하기</button>
+	<button id="btn5">NaN</button>
+	<button id="btn6">기본매개변수</button>
+	<button id="btn7">익명함수와 화살표함수</button>
+	<button id="btn8">전개연산자</button>
+	<hr>
+	<div id="here">여기</div>
+	<hr>
+	<div id="calcurator">
+		<h1>사칙연산(eval 함수 이용)</h1>
+		<input type="number" id="num1">
+		<select id="op">
+			<option value="plus">+</option>
+			<option value="minus">-</option>
+			<option value="triple">*</option>
+			<option value="division">/</option>
+			<option value="remainder">%</option>
+		</select>
+		<input type="number" id="num2">
+		<button id="result">=</button>
+		<input type="text" id="num3">
+	</div>
+	<script>
+	//LAB1. 배경색을 가변으로 10초마다 바꾸기
+	var arr = ["yellow", "lightgreen", "lightpink", "lightblue", "orange"];
+	
+	//setTimeout 특정 시간 이후에 수행
+	//setInterval 특정한 시간마다 수행
+	var interval = setInterval(()=>{
+		var su = Math.floor(Math.random()*arr.length);
+		document.bgColor = arr[su];
+	}, 2000);
+	
+	window.onmousemove = function(){
+		clearInterval(interval);
+	};
+	
+	
+	</script>
+</body>
+</html>

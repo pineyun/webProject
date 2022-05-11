@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수연습(사용자 정의 함수)</title>
+<style>
+	li:hover{background-color: lightblue;}
+</style>
+</head>
+<body>
+	<h1>함수연습(사용자 정의 함수)</h1>
+	<ul>
+		<li id="li1">1. 이름 있는 함수(선언적 함수)</li>
+		<li id="li2">2. 이름 없는 함수(익명 함수)</li>
+		<li id="li3">3. Callback 함수</li>
+		<li id="li4">4. 함수 재정의</li>
+		<li id="li5">5. 함수의 매개변수</li>
+		<li id="li6">6. Array 변수</li>
+		<li id="li7">7. 함수의 return</li>
+		<li id="li8">7. Callback 함수(2)</li>
+	</ul>
+	<hr>
+	<div id="here">여기</div>
+	<script>
+		alert(pythagoras());
+		function pythagoras(){
+			var width=3;
+			var height=4;
+			here.innerHTML += `<br>피타고라스...`;
+			return Math.sqrt(square(width)+square(height));
+			//내부함수 : 외부에서 호출 불가
+			//동일한 이름의 함수와 함수 충돌을 막기 위하여 사용
+			function square(xx){
+				return xx*xx;
+			};
+		};
+	
+		function myFunction2(a){
+			here.innerHTML = `myFunction 시작<br>`;
+			if(a>10) return "OK";
+			here.innerHTML += `myFunction 끝<br>`;
+			return "NO";
+			//return; 마지막의 return은 생략가능
+		};
+		function myFunction(a){
+			here.innerHTML = `myFunction 시작<br>`;
+			if(a>10) return;
+			here.innerHTML += `myFunction 끝<br>`;
+			
+			//return; 마지막의 return은 생략가능
+		};
+	</script>
+	<script>
+		li8.onclick = function(){
+			function call(func){
+				func();
+				func();
+			};
+			
+			call(function(){
+				here.innerHTML += `<br>CALLBACK함수 TEST`;
+			});
+			call(pythagoras);
+			
+		};
+	
+		li7.onclick = function(){
+			myFunction(20);
+			var result = myFunction2(10);
+			here.innerHTML += `<br> result = ${result}`;
+		};
+		
+		li6.onclick = function(){
+			var arr1 = Array();
+			var arr2 = Array(10);
+			var arr3 = Array(1,2,3,4,5,6,7,8,9,10);
+			here.innerHTML += `<br> ${typeof(arr1)}, ${arr1.length}`;
+			here.innerHTML += `<br> ${typeof(arr2)}, ${arr2.length}`;
+			here.innerHTML += `<br> ${typeof(arr3)}, ${arr3.length}`;
+			var total=0;
+			sumAll();
+			sumAll(1,2,3,4,5);
+			//sumAll(100,200);
+			//sumAll("javaScript", "HTML5");
+			//자바스크립트는 함수의 Overloading 불가, Override만 가능
+			
+			function sumAll(){
+				//arguments객체가 내장되어 있다.
+				for(let index in arguments){
+					total += arguments[index];
+				};
+				here.innerHTML += `<br>total = ${total}`;
+			};
+		
+		};
+		
+		li5.onclick = function(){
+			function call(a,b,c){
+				here.innerHTML += `<br>a = ${a}`;
+				here.innerHTML += `<br>b = ${b}`;
+				here.innerHTML += `<br>c = ${c}`;
+				here.innerHTML += `<hr>`;
+			}
+			
+			//JavaScript는 함수호출 시 매개변수의 개수 다름을 허용
+			//값이 들어오지 않으면 undefined
+			call();
+			call(10);
+			call(20,30);
+			call(40,50,60);
+			call(40,50,60,70); //매개변수 개수만큼 받음
+		};
+		
+		li4.onclick = function(){
+			//호이스팅 : var 로드, 함수정의, 코드실행 시작
+			//선언적 함수 : 뒤의 함수가 실행됨
+			alert(typeof(f1));
+			f1();
+			function f1(){
+				alert("1");
+			};
+			function f1(){
+				alert("2");
+			};
+			
+			//선언만 이루어지고, 함수 할당 X(undefined)
+			var f1 = function(){
+				alert("3");
+			};
+			f1();
+		};
+	
+		li3.onclick = function(){
+			//callback함수 : 함수가 매개변수로 전달되고, 받은쪽에서 호출
+			setInterval( function(){
+				here.innerHTML = `${new Date()}`;
+			}, 1000 );
+		};
+	
+		li2.onclick = function(){
+			//익명함수 선언 후 실행 (일회성)
+			(function(){
+				var obj = document.getElementById("li2");
+				here.innerHTML = obj.innerHTML;
+			})();
+			
+			//여러번 호출 가능
+			//익명 함수는 할당 후에만 호출 가능
+			var myfunction = function(){
+				here.innerHTML += `<br> 익명함수...`;				
+			};
+			
+			//함수내용
+			here.innerHTML += `<br> ${myfunction}`;
+			
+			
+			myfunction();
+			myfunction();
+		};
+		
+		li1.onclick = function(){
+			f1(); //이름이 있는 함수는 정의가 먼저 되기 때문에 호이스팅에 의해 호출 가능
+			function f1(){ //정의
+				here.innerHTML = `이름이 있는 함수(일반적)<br>`;
+				here.innerHTML += `함수 내의 함수(내부 함수)`;
+			}
+		};
+		
+	</script>
+</body>
+</html>
