@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//1.선언적 함수(이름 있는 함수)
+	function call1(){
+		here.innerHTML = `<h1>1. 선언적 함수(이름 있는 함수)</h1>`;
+	};
+	
+	//2.익명 함수(이름 없는 함수)
+	var noname = function (){
+		here.innerHTML = `<h1>2. 익명 함수(이름 없는 함수)</h1>`;
+	};
+	
+	//3.내부 함수(함수 내에 있는 함수)
+	function call2(){
+		innerFunc();
+		function innerFunc(){
+			here.innerHTML = `<h1>3. 내부 함수(함수 내에 있는 함수)</h1>`;	
+		};
+	};
+	
+	//4.Callback 함수(parameter를 받은 쪽에서 호출)
+	function call4(param){
+		param();
+	}
+	function callbackFunc(){
+		here.innerHTML = `<h1>4. Callback 함수(parameter를 받은 쪽에서 호출)</h1>`;
+	};
+	
+	
+	
+	function call5(){
+		setInterval(call6, 1000);
+	};
+	function call6(){
+		here.innerHTML = `<h1>${new Date()}</h1>`;
+	};
+	
+	
+	
+	//5. Closer
+	function call7(param){
+		var a = 10 + param;
+		return function(){
+			alert(`함수 return a=${a}, param=${param}`);
+		};
+	};
+	
+	
+</script>
+</head>
+<body>
+	<h1>사용자정의 function</h1>
+	<button onclick="call1();" id="btn1">1. 선언적 함수(이름 있는 함수)</button>
+	<button onclick="noname();" id="btn2">2. 익명 함수(이름 없는 함수)</button>
+	<button onclick="call2();" id="btn3">3. 내부 함수(함수 내에 있는 함수)</button>
+	<button onclick="call4(callbackFunc);" id="btn4">4. Callback 함수(parameter를 받은 쪽에서 호출)</button>
+	<button onclick="call5();" id="btn4">4. Callback 함수(parameter를 받은 쪽에서 호출)</button>
+	<button onclick="call7(1)();" id="btn5">5. Closer(지역변수 남기기)</button>
+	<hr>
+	<div id="here">여기</div>
+</body>
+</html>

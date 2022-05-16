@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="external.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.13.3/underscore-umd-min.js
+"></script>
+<script>
+function f11(){
+	var students = []
+	students.push({이름:"윤인성1", 국어:85, 수학:100, 영어:99, 과학:88})
+	students.push({이름:"윤인성2", 국어:97, 수학:98, 영어:88, 과학:59})
+	students.push({이름:"윤인성3", 국어:70, 수학:77, 영어:90, 과학:95})
+	students.push({이름:"윤인성4", 국어:87, 수학:98, 영어:89, 과학:99})
+	students.push({이름:"윤인성5", 국어:67, 수학:88, 영어:77, 과학:77})
+	students = _.sortBy(students,"국어"); //_scorejS
+	students = students.reverse();//js
+	console.log(students);
+};
+</script>
+<script>
+window.onload = function(){
+	//onclick -> 이벤트속성
+	//f1~f6 -> 이벤트 발생 시 수행할 기능 event handler
+	btn1.onclick = f1;
+	btn2.onclick = f2;
+	btn3.onclick = f3;
+	btn4.onclick = f4;
+	btn5.onclick = f5;
+	btn6.onclick = f6;
+	btn7.onclick = f7;
+	btn8.onclick = f8;
+	btn9.onclick = f9;
+	btn10.onclick = f10;
+	btn11.onclick = f11;
+};
+
+function Phone(model, price){
+	var model = model; //var은 자바의 private가 유사
+	//this.model = model; //model = a 는 전역변수
+	this.price = price;
+	this.getModel = function(){return model};
+};
+
+Phone.prototype.toString = function(){
+	return `Model : ${this.getModel()} , Price : ${this.price}`;};
+
+	function f1(){
+	//생성자 함수를 부름(대문자로 씀)
+	var phones = [new Phone("DDD", 70)];
+	var p2 = new Phone("CCC", 200);
+	phones.push(p2);
+	phones.push(new Phone("ABC", 100));
+	
+	for(var index in phones){
+		here.innerHTML += `<br>${phones[index]}`;
+	}
+	
+};
+
+function f2(){
+	var a=3.141592;//기본형 number
+	var b=new Number(3.141592); //생성자함수로 만든 object
+	//자바는 int(기본타입), Integer(기본형+기능추가=>Wrapper class)가 다르다.
+	//자바스크립트는 기본형도 객체와 같이 기능 사용 가능
+	
+	here.innerHTML = `${a.toFixed(3)}<br>`;
+	here.innerHTML += `${b.toFixed(3)}<br>`;
+	//객체는 기능추가 가능
+	b.myFunction = function(){return 111;};//메서드추가
+	b.myProperty = 999; //속성추가
+	here.innerHTML += `${b.myFunction()}<br>`;
+	here.innerHTML += `${b.myProperty}<br>`;
+	here.innerHTML += `${typeof(a)}, ${typeof(b)}<br>`;
+
+};
+
+function f3(){
+	//object객체는 자바스크립트의 최상위 객체
+	//두 가지 방법으로 object 객체 생성
+	var a = {};
+	var b = new Object();
+	here.innerHTML += `<hr> ${a}`;
+	a.toString = function(){return "toString 재정의"}; //재정의
+	here.innerHTML += `<hr> ${a}`;
+};
+
+function f4(){
+	var a = "Hello!";
+	var b = new String("Hello~");
+	here.innerHTML = `a : ${typeof(a)}, b : ${typeof(b)}<br>`;
+	here.innerHTML += `a의 길이(속성): ${a.length}<br>`;
+	here.innerHTML += `a의 0번째 문자 자르기: ${a.charAt(0)}<br>`;
+	here.innerHTML += `a의 0~2 문자 자르기: ${a.substr(0,3)}<br>`;
+	here.innerHTML += `a의 2~3 문자 자르기: ${a.substring(2,4)}<br>`;
+	here.innerHTML += `a의 문자바꾸기: ${a.replace("!", "~~~")}<br>`;//메소드 사용 시에만 바뀜
+	here.innerHTML += `a의 문자원본: ${a}`;//원본은 유지됨
+};
+
+function f5(){
+	var arr1 = [60,10,20];
+	var arr2 = [80,50,70];
+	arr1 = arr1.concat(arr2); //배열 요소 모두 합치기
+	here.innerHTML = `${arr1}<br>`; 
+	arr1.join("*");
+	here.innerHTML = `${arr1.join("*")}<br>`; //배열을 문자열로 만들기(default는 ,로 조인)
+	here.innerHTML += `desc sort : ${arr1.sort(function(a,b){
+		//<=>
+		return b-a; //desc 
+	})}<br>`;
+	arr1.sort((a,b)=>a-b);
+	here.innerHTML += `asc sort : ${arr1}<br>`; 
+	arr1.reverse();
+	here.innerHTML += `reverse : ${arr1}<br>`; 
+};
+
+function f6(){
+	var arr = call6();
+	
+	//성적으로 sort
+	arr.sort(function(a,b){
+		return b.getSum() - a.getSum(); //asc
+	});
+	//상위 3개만 출력
+	for(var index in arr.slice(0,3)){
+ 		here.innerHTML += `<hr>${arr[index]}`;
+	
+	};
+	
+	
+	//문자로 Ascending Sort 0, 1, -1
+	arr.sort(function(a,b){ //이름으로 dsc : -1,0,1
+		if(a.name==b.name) return 0;
+		if(a.name>b.name) return -1;
+		return 1;
+	});
+	for(var index in arr){
+ 		here.innerHTML += `${arr[index]}`;
+	};
+		
+}
+
+
+function f7(){
+	var arr = [10,50,100,20,70,1];
+	//sort()는 기본적으로 문자열 sort이므로 sort재정의
+	arr.sort(function(a,b){ return a-b;});
+	here.innerHTML += `<br>${arr}`;
+	
+	for(var index in arr){
+		var data = arr.pop();
+		here.innerHTML += `<br>${index}=>${data}`;
+	}
+	here.innerHTML += `<br>${arr}`;
+	
+	var arr = [10,50,100,20,70,1];
+	//arr.splice(2, 1);
+	//here.innerHTML += `<br>${arr}`;
+	
+	Array.prototype.remove = function(index){
+		this.splice(index,1);
+	};
+	arr.remove(1);
+	here.innerHTML += `<br>${arr}`;
+	
+	//모두 지우기
+	//arr.splice(0,arr.length);
+	while(true){
+		//arr.remove(0);
+		arr.splice(0,1);
+		if(arr.length==0) break;
+	}
+	here.innerHTML += `<hr>전부 삭제됨 ${arr}`;
+}
+
+function f8(){
+	here.innerHTML = `최대값 : ${Math.max(1,2,3,4,5)}`;
+};
+
+function f9(){
+	var arr = [10,20,99,88,55];
+	here.innerHTML += `<br>99의 위치 : ${arr.indexOf(99)}`; //2
+	here.innerHTML += `<br>99의 위치 : ${arr.indexOf(66)}`; //-1
+	
+	arr.forEach(function(element, index, array){
+		here.innerHTML += `<hr> ${element} => 순서는 ${index}`;
+	});
+	
+	arr = arr.map(function(elt, i, array){
+	
+		return elt/10;
+	});
+	here.innerHTML += `<br> ${arr}`;
+	
+	
+	//filter : 조건에 맞으면 선택
+	var arr = [1,2,3,4,5];
+	arr = arr.filter(function(elt, i, array) {
+		return elt%2==0; //짝수
+	});
+	here.innerHTML += `<br>짝수 : ${arr}`;
+	
+	//reduce
+	var arr = [1,2,3,4,5];
+	var result = arr.reduce(function(previous, current, index, array) {
+		
+		here.innerHTML += `<br> ${previous}...${current}...${index}`;
+		return previous + current;
+	})
+	here.innerHTML += `<br>result : ${result}`;
+};
+
+
+
+//JSON(JavaScript Object Notation) : js obj 형태의 문자열
+function f10(){
+	var obj = {name:"홍길동", age:20, 군필:true,
+			toJSON:function(){
+			return{"name":"홍길동2"};	//toJSON메소드로 재정의, 없으면 원래값을 다 가져옴
+			}
+	}; 
+	//JSON.stringify()에 의해 실행됨
+	var str = JSON.stringify(obj); //json => 자바로 보내줄 때 사용
+	console.dir(obj);
+	console.dir(str);
+	var obj2 = JSON.parse(str); //자바=>jS 보낼 때 문자를 다시 JS의 OBJ로 변환
+	console.dir(obj2);
+	
+	
+
+	var students = []
+	students.push({이름:"윤인성1", 국어:87, 수학:100, 영어:99, 과학:88})
+	students.push({이름:"윤인성2", 국어:97, 수학:98, 영어:88, 과학:59})
+	students.push({이름:"윤인성3", 국어:77, 수학:77, 영어:90, 과학:95})
+	students.push({이름:"윤인성4", 국어:87, 수학:98, 영어:89, 과학:99})
+	students.push({이름:"윤인성5", 국어:67, 수학:88, 영어:77, 과학:77})
+
+	//과학성적이 90이상인 학생은?
+	result = students.filter(function(item){
+	    return item.과학>=90;
+	});
+	console.dir(result);
+	//here.innerHTML += `<hr>result : ${result}`;
+	//평균이  90이상인 학생은?
+	result = students.filter(function(item){
+	     return (item.국어 + item.수학 + item.영어 + item.과학) /4 >=90;
+	});
+	console.dir(result);
+
+	//과학성적이 90이상인 학생은?
+	result = students.filter(item=>item.과학>=90);
+	console.dir(result);
+
+	//평균이  90이상인 학생은?
+	result = students.filter(item=>(item.국어 + item.수학 + item.영어 + item.과학) /4 >=90);
+	console.dir(result);
+	
+	
+	students.sort(function(s1,s2){
+		if(s1.이름==s2.이름)return 0;
+		if(s1.이름 < s2.이름) return -1;
+		return 1;
+	});
+	console.dir(students);
+
+	
+	
+};
+</script>
+</head>
+<body>
+	<h1>내장 Object 연습</h1>
+	<button id="btn1">object1</button>
+	<button id="btn2">기본자료형과 Object(Number)</button>
+	<button id="btn3">Object</button>
+	<button id="btn4">String</button>
+	<button id="btn5">Array</button>
+	<button id="btn6">Array-Sort</button>
+	<button id="btn7">Array 요소 제거</button>
+	<button id="btn8">Math</button>
+	<button id="btn9">Array--ECMAScript5</button>
+	<button id="btn10">JSON(JavaScript Object Notation)</button>
+	<button id="btn11">Underscore Library 이용</button>
+	<hr>
+	<div id="here">여기</div>
+</body>
+</html>
