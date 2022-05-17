@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//이벤트 이름 : load, click
+//이벤트 속성 : onload, onclick
+//이벤트 핸들러, 리스너 : function(){}, function(){}
+	window.onload = function(){
+		var flag = true;
+		document.querySelector("#header1").onclick = function(ee){
+				//alert(this.innerHTML);
+				//document.querySelector("#header1").onclick = null;//한번만 실행가능
+				if(flag) {
+					this.style.backgroundColor="lightgreen";
+				}
+				else {
+					this.style.backgroundColor="pink";
+				}
+				
+				flag = !flag;
+				console.dir(window.event);
+				ee = ee || window.event;
+				here.innerHTML = `위치 x= ${ee.clientX} , y= ${ee.clientY}`;
+		};
+		
+		btn1.onclick = function(){
+			header1.onclick();
+		};			
+		
+		btn2.onclick = function(){
+			console.dir(document.querySelector("#myfrm"));
+		};
+	
+	
+	//default event를 취소하는 방법
+	myfrm.onsubmit = function (){
+		var userid = document.querySelector("input[name='userId']");
+		var userpw = document.querySelector("input[name='userPw']");
+		if(userid.length==0 || userpw.length==0){
+			alert("아이디 또는 비밀번호 입력은 필수입니다.")
+			return false;
+		}
+	};
+}; //onload의 닫기
+</script>
+</head>
+<body>
+	<h1 id="header1">header1 ... 이벤트 연결 연습(고전적 방법)</h1>
+	<button id="btn1">이벤트 강제 발생</button>
+	<button id="btn2">form 정보 알아내기</button>
+	<form  id="myfrm" action="4.jsp">
+		아이디 <input type="text" name="userId" value="admin">
+		비밀번호 <input type="password" name="userPw" value="1234">
+		<input type="submit" value="서버전송">
+	</form>
+	<hr>
+	<div id="here">여기</div>
+</body>
+</html>

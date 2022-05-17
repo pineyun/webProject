@@ -47,12 +47,11 @@
 	function call3(){
 		for(let key in obj ){
 			here.innerHTML += `<br>${key}, ${key in obj}`
-		
+		}
 		//객체 안에 속성이 값이 있는지 확인하는 방법
-			here.innerHTML += `${name in window}`; //존재하지만 값은 ''
-			here.innerHTML += `${Boolean('')}`; 
-			here.innerHTML += `${Boolean('aaaa')}`;
-		}	
+		here.innerHTML += `<br>${name in window}`; //존재하지만 값은 ''
+		here.innerHTML += `<br>${Boolean('')}`; 
+		here.innerHTML += `<br>${Boolean('aaaa')}`;
 	};
 	
 	function call4(){
