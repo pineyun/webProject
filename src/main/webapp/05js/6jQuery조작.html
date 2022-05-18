@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../jslib/jquery-3.6.0.min.js"></script>
+<script>
+var obj = {"background-color":"pink", border:"1px dashed red", color:"blue"};
+//$(); -> 문서가 로드가 완료되면 수행
+$(function(){
+	//on함수 사용
+	//$("#btn1").on("click",function(){}); - 익명함수
+	
+	//선언적 함수
+	//버튼의 이벤트에 리스너를 연결
+	$("#btn1").on("click", f1);
+	$("#btn2").on("click", f2);
+	$("#btn3").on("click", f3);
+	$("#btn4").on("click", f4);
+	$("#btn5").on("click", f5);
+	$("#btn6").on("click", f6);
+	$("#btn7").on("click", f7);
+	$("#btn8").on("click", f8);
+});
+	//속성 얻기 attr();
+	function f1(){
+		//var a = document.querySelector("img").src;
+		//var a = document.getElementsByTagName("img")[0].src;
+		//var a = $("img").first()attr("src");
+		var a = $("img:first").attr("src");
+		$("#here").html(a);
+	}
+	
+	//속성 변경 attr(,);
+	function f2(){
+		$("img:first").attr("src","../images/muffin.png");
+	}
+	
+	//속성 변경 함수이용
+	function f3(){
+		$("img").attr("src", function(index){
+			if(index==0) return "../images/kids.jpg";
+			return "../images/muffin.png";
+		});
+		
+		$("img").attr("width",function(index){
+			return (index+1)*50;
+			
+		});
+	}
+	
+	function f4(){
+		var obj2 = {};
+		obj2.src = function(index){
+			if(index==0) return "../images/kids.jpg";
+			return "../images/muffin.png";			
+		};
+		obj2.width = function(index){
+			return (index+1)*100;	
+		};
+		$("img").attr(obj2);
+	}
+	
+	
+	//속성제거 removeAttr 
+	function f5(){
+		$("img").removeAttr("src");
+	}
+	
+	//객체제거 remove
+	function f6(){
+		$("#here").remove();
+	}
+	
+	//내용제거 empty (태그는 존재)
+	function f7(){
+		$("#here").empty();
+	}
+	
+	//객체 생성 appendTo (#here 안에서 뒤에 추가), prependTo (#here 안에서 앞에 추가)
+	function f8(){
+		$("<h1></h1>").text("Hello~~~1").appendTo("#here");
+		$("<h1></h1>").text("Hello~~~2").prependTo("#here");
+		
+	//insertBefore (#here 앞에), insertAfter(#here 뒤에)
+		$("<h1></h1>").text("Hello~~~3").insertBefore("#here");
+		$("<h1></h1>").text("Hello~~~3").insertAfter("#here");
+		$("<img>").attr({"src":"../images/cover.jpg", "width":100}).appendTo("#here");
+	}
+</script>
+<style>
+	#here {background-color:lightblue;}
+</style>
+</head>
+<body>
+	<button id="btn1">속성 얻기</button>
+	<button id="btn2">속성 변경</button>
+	<button id="btn3">속성 변경(함수넣기)</button>
+	<button id="btn4">속성 변경(object)</button>
+	<button id="btn5">속성 제거</button>
+	<button id="btn6">문서 객체 제거(remove) </button>
+	<button id="btn7">내용 제거 empty</button>
+	<button id="btn8">객체 생성</button>
+	<hr>
+	<div id="here">여기</div>
+	<img src="../images/umbrella.jpg">
+	<img src="../images/umbrella.jpg">
+	<img src="../images/umbrella.jpg">
+	
+</body>
+</html>

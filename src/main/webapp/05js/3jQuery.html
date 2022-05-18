@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	//js는 중복되면 뒤에 것 실행
+			//속성
+	/* window.onload = function(){
+		alert("aa");
+	};
+	window.onload = function(){
+		alert("bb");
+	}; */
+	
+	//jQuery
+	//$(대상).함수이름();
+	//중복가능			//함수 
+	//$(document).ready(function(){
+	//	alert("cc");		
+	//});
+	//$(document).ready(function(){
+	//	alert("dd");		
+	//});
+	//$(function(){alert("ee");}); //document, ready 생략가능
+
+	
+	$(function(){
+		
+		$("#btn1").click(function(){
+			console.log(this); //js 문법
+			this.style.border = "2px dashed orange"; 
+			
+			console.log($(this)); //제이쿼리문법
+			$("h2").css("color","red");
+			$("h2").css({"background-color":"pink",
+				"border":"3px solid green"});
+			$('#here').css({'border':'2px solid black', 'color':'pink'});
+			$('.aa').css({'border':'1px dashed red'});
+			
+			
+			$("input:text").css({"background-color":"pink",
+				"border":"none"});
+			$("input:button").css({"background-color":"brown",
+				"border":"none"});
+			var aa = $("select > option:selected").val();
+			$("#here").html(`<h1>${aa}</h1>`);
+			$("select > option:even").css('color','red');
+		
+			$("p:contains('태그')").css('color','blue');
+		
+		});
+		
+		$("#btn2").click(function(){
+			
+			if($("h1").hasClass("on")){
+				$("h1").removeClass("on");;
+			} else{
+				$("h1").addClass("on");;
+			}
+		});
+		
+	});
+	
+</script>
+<style>
+	.on{
+		background-color: orange;
+		color: blue;
+	}
+</style>
+</head>
+<body>
+	<button id="btn1">스타일 변경</button>
+	<button id="btn2">스타일 ON/OFF</button>
+	<h1> jQuery 연습 </h1>
+	<h2> jQuery h2 - 1</h2>
+	<h2> jQuery h2 - 2</h2>
+	<div id="here">여기</div>
+	<p>p 태그</p>
+	<p class = "aa">p </p>
+	<p>p 태그</p>
+	<p class = "aa">p 태그</p>
+	<p class = "aa">p </p>
+	<input>인풋
+	<input type="text">
+	<input type="text">
+	<input type="button">
+	<select>
+		<option>월</option>
+		<option>화</option>
+		<option>수</option>
+		<option>목</option>
+		<option>금</option>
+		<option selected="selected">토</option>
+		<option>일</option>
+	</select>
+</body>
+</html>

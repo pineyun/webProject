@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../jslib/jquery-3.6.0.min.js"></script>
+<script>
+var obj = {"background-color":"pink", border:"1px dashed red", color:"blue"};
+//$(); -> 문서가 로드가 완료되면 수행
+$(function(){
+	//on함수 사용
+	//$("#btn1").on("click",function(){}); - 익명함수
+	
+	//선언적 함수
+	$("#btn1").on("click", f1);
+	$("#btn2").on("click", f2);
+	$("#btn3").on("click", f3);
+	$("#btn4").on("click", f4);
+	$("#btn5").on("click", f5);
+	$("#btn6").on("click", f6);
+	$("#btn7").on("click", f7);
+	$("#btn8").on("click", f8);
+
+});
+	//h1:짝수번째 태그 스타일만 변경 - 1
+	function f1(){ //값은 ""로 작성, ""이 없으면 변수
+		$("h1:even").css(obj);
+	}
+	
+	//h1:짝수번째 태그 스타일만 변경 - 2 (filter)
+	function f2(){
+		$("h1").filter(":odd").css(obj);
+	}
+	
+	//h1:짝수번째 태그 스타일만 변경 - 3 (filter 내부 함수)
+	function f3(){
+		$("h1").filter(function(index){
+			return index%3==0;
+		}).css(obj);
+	}
+	function f4(){ 
+		$("h1:nth-child(3n+1)").css(obj);
+	}
+	
+	//특정 문자열 선택
+	function f5(){
+		$("h1").filter(function(index){
+			if($(this).html()=="jQuery 연습 5")
+				return true;
+			return false;
+		}).css(obj);
+	}
+	
+	//필터 체이닝
+	function f6(){
+		$("h1").css("border","1px dashed blue")
+		.filter(":even").css("background-color","lime")
+		.end()//한 단계 위로 올림(앞의 필터 이전으로)
+		.filter(":odd").css("background-color","skyblue");
+	}
+	
+	function f7(){
+		$("h1").first().css("border","1px dashed purple");//제이쿼리메소드
+		$("h1:first").css("background-color","lime");//필터선택자
+		
+		$("h1").last().css("border","1px dotted blue");
+		$("h1:last").css("background-color","orange");
+		$("h1").eq(-1).css("font-size","20px");
+		
+		$("h1").eq(2).css("font-size","20px");
+	}
+	
+	
+	//xml parsing
+	function f8(){
+		var str = `
+		<friends>
+			<friend>
+			<name>홍길동1</name>
+			<phone>010-1234-5678</phone>
+			</friend>
+			<friend>
+				<name>홍길동2</name>
+				<phone>010-2234-5678</phone>
+			</friend>
+			<friend>
+				<name>홍길동3</name>
+				<phone>010-3234-5678</phone>
+			</friend>
+			<friend>
+				<name>홍길동4</name>
+				<phone>010-4234-5678</phone>
+			</friend>
+		</friends>
+		`;
+	var obj = $.parseXML(str);//xml파일의 string을 객체로 만듦
+	console.log(str);
+	console.log(obj);
+	
+	$(obj).find("friend").each(function(index){
+		console.log($(this).find("name").text());
+		console.log($(this).find("phone").text());
+	});
+	}
+</script>
+</head>
+<body>
+	<h1>jQuery 연습 1</h1>
+	<h1>jQuery 연습 2</h1>
+	<h1>jQuery 연습 3</h1>
+	<h1>jQuery 연습 4</h1>
+	<h1>jQuery 연습 5</h1>
+	<h1>jQuery 연습 6</h1>
+	<h1>jQuery 연습 7</h1>
+	<h1>jQuery 연습 8</h1>
+	<button id="btn1">filter1 : 짝수 </button>
+	<button id="btn2">filter2 : 홀수</button>
+	<button id="btn3">filter3 : 3의 배수</button>
+	<button id="btn4">filter4 : 3의 배수</button>
+	<button id="btn5">filter5 : 특정 문자열 선택</button>
+	<button id="btn6">filter6 : 체이닝과 end()</button>
+	<button id="btn7">filter7 : first, last, eq</button>
+	<button id="btn8">xml parsing</button>
+	<hr>
+	<div id="here">여기</div>
+</body>
+</html>

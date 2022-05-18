@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax 연습</title>
+<script>
+//json cross browsing
+/*
+ * XMLHttpRequest : Ajax를 하기 위한 객체 
+ 	Ajax : 비동기통신
+ 	현재 페이지는 이동하지 않고 서버에 요청을 보내서 받음
+ */
+
+window.onload = function(){
+	btn1.onclick = function(){
+		var xhr = new XMLHttpRequest();//객체생성
+		xhr.open("get","../04js/mission1_question.html",false);//요청방식, 요청문서, 비동기여부(false==동기)
+		xhr.send(); //서버에 요청보내기 ... 동기방식이면 응답할 때까지 기다림
+		here.innerHTML = xhr.responseText;
+	};
+	
+	btn2.onclick = function(){
+		var xhr = new XMLHttpRequest();//객체생성
+		xhr.open("get","../04js/mission1_question.html",true);//요청방식, 요청문서, 비동기여부(true==비동기)
+		xhr.onreadystatechange = function(event){
+			if(xhr.readyState==4 && xhr.status==200){
+				//4->모든 데이터를 받음, 200->요청과 응답이 성공, 500->오류, 404->페이지없음
+				here.innerHTML = xhr.responseText;
+			}
+		};
+		xhr.send(); //서버에 요청보내기 ... 비동기방식이면 응답할 때까지 기다리지 않음	
+	};
+	
+	btn3.onclick = function(){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				here.innerHTML = xhr.responseText;
+			}
+		};
+		var param = `name=${myname.value}&phone=${myphone.value}`;
+		xhr.open("get",`1.jsp?${param}`);
+		xhr.send(); //전송 후 기다리지 않고
+		alert("aaaa"); //실행 
+		
+	};
+	btn4.onclick = function(){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				here.innerHTML = xhr.responseText;
+				console.log(typeof(xhr.responseText));//string타입
+				 //JSON(string)->obj로 바꾸기
+				var obj = JSON.parse(xhr.responseText);
+				console.log(obj.name);//값추출
+				var output = `
+				<ul>
+					<li>${obj.name}</li>
+					<li>${obj.age}</li>
+					<li>${obj.address}</li>
+					<li>${obj.phone}</li>
+				</ul>
+				`;
+				here.innerHTML += output; 
+			}
+		};
+		var param = `name=${myname.value}&phone=${myphone.value}`;
+		xhr.open("get",`2.jsp?${param}`);
+		xhr.send(); 
+		
+	};
+};
+</script>
+</head>
+<body>
+	<h1>Ajax연습</h1>
+	<button id="btn1">Ajax 1 - 동기</button>
+	<button id="btn2">Ajax 2 - 비동기</button>
+	<input type="text" id="myname" value="이름">
+	<input type="text" id="myphone" value="전화번호">
+	<button id="btn3">Ajax 3 - 서버프로그램(jsp요청-html받기)</button>
+	<button id="btn4">Ajax 4 - 서버프로그램(jsp요청-json받기)</button>
+	<hr>
+	
+	<div id="here">여기</div>
+</body>
+</html>
